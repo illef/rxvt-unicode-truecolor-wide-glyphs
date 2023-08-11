@@ -49,6 +49,7 @@ source=(
     '24-bit-color.patch'
     'enable-wide-glyphs.patch'
     'improve-font-rendering.patch'
+    'solve-font-find-issue.patch'
 )
 b2sums=('439a8c33b7260e0f2fd68b8a4409773c06c3bb7623b5dfbbb0742cc198c9fd25e8a247907878639db5fac3dcd3b6be3d839347787bcf08ca602ae246607f750b'
         '1c58b1d53c72dbfae4f9302f5903365f84e85b2a1e9846d9dd9c712a7900e73a94621a41bee6dd75d690df8ae95d1d987d93ca4355eb8d8c423c57680df0edcf'
@@ -61,7 +62,9 @@ b2sums=('439a8c33b7260e0f2fd68b8a4409773c06c3bb7623b5dfbbb0742cc198c9fd25e8a2479
         '9e48493ed4138beaf6333339bb421f7531f298d85c45b30799e4c672363a2653e884749c7cd9c98e42665f6f837f69caa3e1429285e9b40798c87b161b6d66c6'
         '03c250e1aedbe50924b34cc9261921b3bf7af6786ce3fea61cbcf145b79b6eb4e101e63fa08f00baaabe530bb164e6bcfd4c04ddbacf0dcc28fdebef0519b9e0'
         '8d360d8b0cd274b63f3c0c7651b358cf94aa71c39adb15ca5d8f3c8a05d930bf96ac559e6b7eceb6b3706a2caa3bf7002f75f596a1efdb5e54e43d20b9341590'
-        '77b2a764558660cbc16325eacca3a2b17d3071d59c7a956a43c796a8d9374f5d202012e13a50ef4d978e2826009d9f1a93fb118d97e27e4cfbf0569e1d781082')
+        '77b2a764558660cbc16325eacca3a2b17d3071d59c7a956a43c796a8d9374f5d202012e13a50ef4d978e2826009d9f1a93fb118d97e27e4cfbf0569e1d781082'
+        '9ee5ddf9da3accc9577f47443bf7f633e6303c549b9ce71512a0c230dad24091f554ca735ff9150b2478ceeee0a6558fdb2e0cd7e8719e0ad70e57bd544e6b7a'
+        )
 
 prepare() {
     mv -v "$_archive.tar.bz2.signature" "$_archive.tar.bz2.sig"
@@ -90,6 +93,8 @@ prepare() {
     # https://gist.githubusercontent.com/emonkak/28bbc5474697695321452b6d9bf1d0bd/raw/a888c37ae10376598e663cf989132648f89219c0/rxvt-unicode-9.22-improve-font-endering.patch
     # patch rewritten to work with version ≥ 9.29
     patch -p0 -i ../improve-font-rendering.patch
+
+    patch -p0 -i ../solve-font-find-issue.patch
 }
 
 build() {
